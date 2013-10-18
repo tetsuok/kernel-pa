@@ -1,8 +1,9 @@
 kernel-pa
 =========
 
-An implementation of kernelized passive-aggressive algorithm (PA-I) [1].
-This tool is created particularly for natural language processing applications.
+An implementation of kernelized passive-aggressive algorithm (PA-I) [1] for 
+binary classification. This tool is created particularly for natural language 
+processing applications.
 
 ## Features
 
