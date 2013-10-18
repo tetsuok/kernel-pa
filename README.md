@@ -32,7 +32,7 @@ The data format of the training and test data is the same as [SVMLight](http://s
 
 ### Options
 
-- -C hyperparameter of passive-aggressive
+- -C hyperparameter of passive-aggressive algorithm
 - -d the degree of polynomial kernel function. We support: d = 1, 2, 3, and 4.
 - -t the number of iterations
 - -o model file
@@ -49,7 +49,7 @@ The data format of the training and test data is the same as [SVMLight](http://s
 
 ## Acknowledgements
 
-Thanks for Daisuke Okanohara. His online learning tool kit, [oll](https://code.google.com/p/oll/) is a good resource to make sure implemented code works fine.
+Thanks for Daisuke Okanohara. His online learning toolkit, [oll](https://code.google.com/p/oll/) is a good resource to make sure implemented code works fine.
 
 ## License
 
