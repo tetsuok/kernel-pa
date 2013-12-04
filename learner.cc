@@ -68,7 +68,7 @@ bool Learner::Train(const char* filename, int iter) {
   }
 
   fprintf(stderr, "INFO: the number of support vectors = %lu\n",
-          sv_index_.size());
+          margin_.size());
   return true;
 }
 
