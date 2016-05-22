@@ -5,7 +5,6 @@
 #include <stdio.h>
 #include "logging.h"
 #include "learner.h"
-#include "tokenizer.h"
 
 namespace kernel {
 namespace {
@@ -91,7 +90,7 @@ int KernelPAClassify(int argc, char** argv) {
     short label;
     fv x;
     size_t dummy = 0;
-    if (!Tokenizer::Tokenize(line.c_str(), &x, &label, &dummy)) {
+    if (!Tokenize(line.c_str(), &x, &label, &dummy)) {
       LOG(ERROR) << "cannot tokenize: " << line;
       return -1;
     }

@@ -2,13 +2,12 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-#include "tokenizer.h"
+#include "common.h"
 #include "logging.h"
 
 namespace kernel {
 
-bool Tokenizer::Tokenize(const char* line, fv* fv, short* y,
-                         std::size_t* maxid) {
+bool Tokenize(const char *line, fv *fv, short *y, std::size_t *maxid) {
   if (line[0] == '#') return false;
 
   *y = static_cast<short>(atoi(line));

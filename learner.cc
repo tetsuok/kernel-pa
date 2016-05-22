@@ -7,7 +7,6 @@
 #include <fstream>
 #include "const.h"
 #include "logging.h"
-#include "tokenizer.h"
 
 using namespace std;
 
@@ -33,7 +32,7 @@ bool Learner::Read(const char* train_file,
 
     short label = 0;                      // true label
     fv vec;
-    if (!Tokenizer::Tokenize(line.c_str(), &vec, &label, maxid)) {
+    if (!Tokenize(line.c_str(), &vec, &label, maxid)) {
       LOG(ERROR) << "Invalid line: " << line_num;
       return false;
     }

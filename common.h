@@ -25,5 +25,7 @@ inline float L2Norm(const fv& x) {
   return r;
 }
 
+bool Tokenize(const char *line, fv *fv, short *y, std::size_t *maxid);
+
 } // namespace kernel
 #endif // KERNEL_PA_COMMON_H_
