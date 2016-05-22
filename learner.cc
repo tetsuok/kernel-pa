@@ -5,7 +5,6 @@
 #include "learner.h"
 
 #include <fstream>
-#include "const.h"
 #include "logging.h"
 
 using namespace std;

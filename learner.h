@@ -12,6 +12,9 @@
 
 namespace kernel {
 
+const double kC = 1.0;
+const int kKernelDegree = 2;
+
 // Learner implements kernelized passive aggressive (PA-I) algorithm
 // (Crammer et al., JMLR 2006).
 //

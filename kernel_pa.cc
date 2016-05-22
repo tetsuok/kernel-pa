@@ -5,7 +5,6 @@
 #include <string>
 #include <unistd.h>
 
-#include "const.h"
 #include "learner.h"
 #include "logging.h"
 
