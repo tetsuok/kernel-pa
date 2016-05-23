@@ -23,7 +23,12 @@ class Result {
     return true;
   }
 
-  void Show() const;
+  void Show() const {
+    std::printf("Accuracy %.3f%% (%d/%d)\n(Answer, Predict): "
+                "(t,p):%d (t,n):%d (f,p):%d (f,n):%d\n",
+                CalcAccuracy(), num_instance_ - mistake_, num_instance_,
+                results_[0], results_[1], results_[2], results_[3]);
+  }
 
   double CalcAccuracy() const {
     return static_cast<double>((num_instance_ - mistake_) * 100.0 / num_instance_);
@@ -43,14 +48,6 @@ class Result {
   unsigned int mistake_ = 0;              // Number of mistakes
   unsigned int results_[4] = {0};         // results of classification
 };
-
-void Result::Show() const {
-  std::printf("Accuracy %.3f%% (%d/%d)\n(Answer, Predict): "
-              "(t,p):%d (t,n):%d (f,p):%d (f,n):%d\n",
-              CalcAccuracy(),
-              num_instance_ - mistake_, num_instance_,
-              results_[0], results_[1], results_[2], results_[3]);
-}
 
 int KernelPAClassify(int argc, char** argv) {
   if (argc < 3) {
