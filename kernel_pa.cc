@@ -19,7 +19,7 @@ const int kNumIter = 3;
 // the default model filename.
 const char kModel[] = "model";
 
-void Usage(const char* name) {
+[[noreturn]] void Usage(const char* name) {
   cerr << "usage: " << name << " [-C FLOAT] [-d INT] [-t INT] [-o FILE] FILE\n"
       "-C hyperparameter passive-aggressive. C should be positive. (default: " << kC << ")\n"
       "-d the degree of polynomial kernel (supported: d = 1, 2, 3, and 4) (deafult: " << kKernelDegree << ")\n"
