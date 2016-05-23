@@ -51,16 +51,14 @@ bool Learner::Train(const char* filename, int iter) {
   const std::size_t num_examples = examples.size();
 
   for (int t = 0; t < iter; ++t) {
-    for (size_t i = 0; i < num_examples; ++i) {
-      fprintf(stderr, "iter = %d: (%lu/%lu)\r", t+1, i, num_examples);
-
-      const float m = Margin(examples[i].first);
-      const float loss = HingeLoss(m, examples[i].second);
+    fprintf(stderr, "iter = %d\n", t+1);
+    for (const auto e : examples) {
+      const float m = Margin(e.first);
+      const float loss = HingeLoss(m, e.second);
       if (loss >= 0.0) {
-        const float rate = LearningRate(loss, examples[i].first);
-        UpdateIndex(examples[i].first,
-                    static_cast<unsigned int>(alpha_.size()));
-        UpdateAlpha(examples[i].first, rate, examples[i].second);
+        const float rate = LearningRate(loss, e.first);
+        UpdateIndex(e.first, static_cast<unsigned int>(alpha_.size()));
+        UpdateAlpha(e.first, rate, e.second);
       }
     }
   }
@@ -89,14 +87,13 @@ bool Learner::Load(const char* filename) {
   bifs.read(reinterpret_cast<char *>(&sv_size), sizeof(sv_size));
   sv_index_.resize(sv_size);
 
-  for (size_t i = 0; i < sv_index_.size(); ++i) {
-    fv& x = sv_index_[i];
+  for (fv& x : sv_index_) {
     std::size_t x_size;
     bifs.read(reinterpret_cast<char *>(&x_size), sizeof(x_size));
     x.resize(x_size);
-    for (size_t j = 0; j < x.size(); ++j) {
-      bifs.read(reinterpret_cast<char *>(&x[j].first), sizeof(x[j].first));
-      bifs.read(reinterpret_cast<char *>(&x[j].second), sizeof(x[j].second));
+    for (auto& p : x) {
+      bifs.read(reinterpret_cast<char *>(&p.first), sizeof(p.first));
+      bifs.read(reinterpret_cast<char *>(&p.second), sizeof(p.second));
     }
   }
 
@@ -124,14 +121,13 @@ bool Learner::Save(const char* filename) const {
   const std::size_t sv_size = sv_index_.size();
   bofs.write(reinterpret_cast<const char *>(&sv_size), sizeof(sv_size));
 
-  for (size_t i = 0; i < sv_index_.size(); ++i) {
-    const fv& x = sv_index_[i];
+  for (const fv& x : sv_index_) {
     const std::size_t x_size = x.size();
     bofs.write(reinterpret_cast<const char *>(&x_size), sizeof(x_size));
 
-    for (size_t j = 0; j < x.size(); ++j) {
-      bofs.write(reinterpret_cast<const char *>(&x[j].first), sizeof(x[j].first));
-      bofs.write(reinterpret_cast<const char *>(&x[j].second), sizeof(x[j].second));
+    for (const auto& p : x) {
+      bofs.write(reinterpret_cast<const char *>(&p.first), sizeof(p.first));
+      bofs.write(reinterpret_cast<const char *>(&p.second), sizeof(p.second));
     }
   }
 

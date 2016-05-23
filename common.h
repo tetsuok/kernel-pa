@@ -19,8 +19,8 @@ typedef std::pair<fv, short> example;
 // Compute |x|^2
 inline float L2Norm(const fv& x) {
   float r = 1.0f; // bias
-  for (size_t i = 0; i < x.size(); ++i) {
-    r += x[i].second * x[i].second;
+  for (const auto& p : x) {
+    r += p.second * p.second;
   }
   return r;
 }

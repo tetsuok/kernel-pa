@@ -66,15 +66,15 @@ class Learner {
   float Margin(const fv& x) {
     ClearMargin();
 
-    for (std::size_t i = 0; i < x.size(); ++i) {
-      const unsigned int id = x[i].first;
-      const float v = x[i].second;
+    for (const auto& p : x) {
+      const unsigned int id = p.first;
+      const float v = p.second;
       if (id >= sv_index_.size()) {
         continue;
       }
       const fv& s = sv_index_[id];
-      for (size_t j = 0; j < s.size(); ++j) {
-        margin_[s[j].first] += s[j].second * v;
+      for (const auto& p2 : s) {
+        margin_[p2.first] += p2.second * v;
       }
     }
 
@@ -96,12 +96,12 @@ class Learner {
   }
 
   void UpdateIndex(const fv& x, unsigned int sv_id) {
-    for (std::size_t i = 0; i < x.size(); ++i) {
-      const unsigned int id = x[i].first;
+    for (const auto& p : x) {
+      const unsigned int id = p.first;
       if (sv_index_.size() <= id) {
         sv_index_.resize(id + 1);
       }
-      sv_index_[id].push_back(std::make_pair(sv_id, x[i].second));
+      sv_index_[id].push_back(std::make_pair(sv_id, p.second));
     }
   }
 

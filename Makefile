@@ -3,7 +3,7 @@ CXX = g++
 #OPT = -O0 -g
 OPT = -O3
 
-CFLAGS =  -I. -Wall $(OPT) -Wno-sign-compare -Wconversion -Wcast-align -Wcast-qual
+CFLAGS = -std=c++11 -I. -Wall $(OPT) -Wno-sign-compare -Wconversion -Wcast-align -Wcast-qual
 LDFLAGS =
 
 PROGRAMS = \
