@@ -11,14 +11,6 @@ namespace {
 
 class Result {
  public:
-  Result() : num_instance_(0), mistake_(0) {
-    results_.clear();
-    results_.resize(4);
-    results_.assign(4, 0);
-  }
-
-  ~Result() { results_.clear(); }
-
   bool Add(short y, short predict) {
     if      (y ==  1 && predict ==  1) { results_[0]++; }
     else if (y == -1 && predict == -1) { results_[1]++; }
@@ -47,9 +39,9 @@ class Result {
   unsigned int get_mistake() const { return mistake_; }
 
  private:
-  unsigned int num_instance_;                    // Number of classified instance
-  unsigned int mistake_;                         // Number of mistakes
-  std::vector<unsigned int> results_;            // results of classification
+  unsigned int num_instance_ = 0;         // Number of classified instance
+  unsigned int mistake_ = 0;              // Number of mistakes
+  unsigned int results_[4] = {0};         // results of classification
 };
 
 void Result::Show() const {
