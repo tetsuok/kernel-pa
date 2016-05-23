@@ -64,7 +64,7 @@ class Learner {
 
   // Compute margin with the PKI.
   float Margin(const fv& x) {
-    ClearMargin();
+    margin_.assign(margin_.size(), 0.0f);
 
     for (const auto& p : x) {
       const unsigned int id = p.first;
@@ -108,12 +108,6 @@ class Learner {
  private:
   // Compute polynomial kernel function.
   float Polynomial() const;
-
-  void ClearMargin() {
-    for (std::size_t i = 0; i < margin_.size(); ++i) {
-      margin_[i] = 0.0f;
-    }
-  }
 
   // hyperparameter of passive-aggressive.
   float C_;
